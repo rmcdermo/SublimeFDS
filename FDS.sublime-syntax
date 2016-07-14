@@ -7,11 +7,14 @@ fileTypes: [fds]
 
 contexts:
   main:
-    # Strings begin and end with quotes| and use backslashes as an escape
-    # character
-    - match: '"'
+    # Strings begin and end with quotes and use backslashes as an escape character
+    # - match: '"'
+    #   scope: punctuation.definition.string.begin.c
+    #   push: double_quoted_string
+
+    - match: "'"
       scope: punctuation.definition.string.begin.c
-      push: double_quoted_string
+      push: single_quoted_string
 
     # Comments begin with a '!' and finish at the end of the line
     - match: '!'
@@ -23,7 +26,12 @@ contexts:
     # strings in YAML. When using single quoted strings, only single quotes
     # need to be escaped: this is done by using two single quotes next to each
     # other.
-    - match: '(&)(HEAD|MESH|TIME|MULT|MISC|DUMP|SPEC|REAC|PART|PROP|RADI|PRES|SURF|VENT|DEVC|BNDF|SLCF|TAIL)'
+    - match: '(&)(HEAD|MESH|TIME|MULT|MISC|DUMP|SPEC|REAC|PART|PROP|MATL|SURF|PRES|RADI|CLIP|RAMP|
+                  TABL|OBST|HOLE|VENT|INIT|ZONE|DEVC|CTRL|PROF|ISOF|SLCF|BNDF|HVAC|GEOM|TAIL)'
+      scope: keyword.control.c
+
+    # Line end
+    - match: '\/'
       scope: keyword.control.c
 
     # HEAD Parameters
@@ -284,9 +292,15 @@ contexts:
     - match: '(?i:\.TRUE\.|\.FALSE\.)'
       scope: constant.language.c
 
-  double_quoted_string:
-    - meta_scope: string.quoted.double.c
-    - match: '"'
+  # double_quoted_string:
+  #   - meta_scope: string.quoted.double.c
+  #   - match: '"'
+  #     scope: punctuation.definition.string.end.c
+  #     pop: true
+
+  single_quoted_string:
+    - meta_scope: string.quoted.single.c
+    - match: "'"
       scope: punctuation.definition.string.end.c
       pop: true
 
