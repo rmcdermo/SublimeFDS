@@ -16,18 +16,18 @@ contexts:
       scope: punctuation.definition.string.begin.c
       push: single_quoted_string
 
-    # Comments begin with a '!' and finish at the end of the line
-    - match: '!'
+    # Comments are ANY line NOT starting with &
+    - match: '^((?!^&).)*$' # see http://www.regular-expressions.info/completelines.html
       scope: punctuation.definition.comment.c
       push: line_comment
 
-    # Keywords are if, else for and while.
-    # Note that blackslashes don't need to be escaped within single quoted
-    # strings in YAML. When using single quoted strings, only single quotes
-    # need to be escaped: this is done by using two single quotes next to each
-    # other.
-    - match: '(&)(HEAD|MESH|TIME|MULT|MISC|DUMP|SPEC|REAC|PART|PROP|MATL|SURF|PRES|RADI|CLIP|RAMP|
-                  TABL|OBST|HOLE|VENT|INIT|ZONE|DEVC|CTRL|PROF|ISOF|SLCF|BNDF|HVAC|GEOM|TAIL)'
+    # Comment everything AFTER end of namelist parameters denoted by forward slash /
+    - match: (?<=\/)(.*) # see "positive lookbehind" in http://www.regular-expressions.info/lookaround.html
+      scope: comment.line.c
+
+    # NAMELIST groups
+    - match: '(^&)(HEAD|MESH|TIME|MULT|MISC|DUMP|SPEC|REAC|PART|PROP|MATL|SURF|PRES|RADI|CLIP|RAMP|
+                   TABL|OBST|HOLE|VENT|INIT|ZONE|DEVC|CTRL|PROF|ISOF|SLCF|BNDF|HVAC|GEOM|TAIL)'
       scope: keyword.control.c
 
     # Line end
