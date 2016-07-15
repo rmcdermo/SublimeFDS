@@ -1,6 +1,8 @@
 # SublimeFDS
 Sublime Text syntax highlighting for FDS input files
 
-Note: This project is just started and under construction.  No working version yet.
+Here is an example using "Pastels on Dark" Color Scheme:
+
+<img src="https://github.com/rmcdermo/SublimeFDS/blob/master/test.png" width="700">
 
 Pull requests welcome!
