@@ -43,6 +43,10 @@ variables:
 contexts:
   main:
 
+    # comments
+    - match: \!
+      push: comment
+
     # Strings
     - match: \'
       push: singlestring
@@ -60,13 +64,13 @@ contexts:
         2: keyword.equals.fortran-namelist
 
     # Comments are ANY line NOT starting with &
-    - match: '^((?!^&).)*$' # see http://www.regular-expressions.info/completelines.html
-      scope: punctuation.definition.comment.c
-      push: line_comment
+    - match: '^((?!^&).*)$' # see http://www.regular-expressions.info/completelines.html
+      scope: punctuation.definition.comment.fortran-namelist
+      push: comment
 
     # Comment everything AFTER end of namelist parameters denoted by forward slash /
-    - match: (?<=\/)(.*) # see "positive lookbehind" in http://www.regular-expressions.info/lookaround.html
-      scope: comment.line.c
+    - match: (?<=/)(.*) # see "positive lookbehind" in http://www.regular-expressions.info/lookaround.html
+      scope: comment.line.fortran-namelist
 
     # Closing /
     - match: /
@@ -86,9 +90,14 @@ contexts:
 
 # additional contexts
 
-  line_comment:
-    - meta_scope: comment.line.c
-    - match: $
+  # line_comment:
+  #   - meta_scope: comment.line.fortran-namelist
+  #   - match: $
+  #     pop: true
+
+  comment:
+    - meta_scope: comment.line.fortran-namelist
+    - match: $\n?
       pop: true
 
   singlestring:
