@@ -1,5 +1,5 @@
 # SublimeFDS
-[Sublime Text](https://www.sublimetext.com/) syntax highlighting for FDS input files
+[Sublime Text](https://www.sublimetext.com/) syntax highlighting for [FDS](https://pages.nist.gov/fds-smv/) input files
 
 Here is an example using the "Monokai" Color Scheme:
 
