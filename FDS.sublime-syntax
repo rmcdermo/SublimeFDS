@@ -76,12 +76,8 @@ contexts:
     - match: /
       scope: keyword.slash.fortran-namelist
 
-    # numeric literals (without an exponent)
-    - match: \b[0-9.]*\b
-      scope: constant.numeric.fortran-namelist
-
     # floating point literals with an exponent
-    - match: (?xi:(?<!\w)  [-+]?  (\d+\.\d+ | \d+\. | \.\d+ | \d+ )?  ([ed][-+]?\d+)?  (_\w+)? )
+    - match: (?xi:(?<!\w)  [-+]?  (\d+\.\d+|\d+\.|\.\d+|\d+)  ([ed][-+]?\d+)?  (_\w+)? )
       scope: constant.numeric.floating-point.fortran-namelist
 
     # boolean constants
