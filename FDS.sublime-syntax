@@ -76,7 +76,7 @@ contexts:
       push: comment
 
     # Comment everything AFTER end of namelist parameters denoted by forward slash /
-    - match: (?<=/)(\s*\w) # see "positive lookbehind" in http://www.regular-expressions.info/lookaround.html
+    - match: (?<=/)(.*) # see "positive lookbehind" in http://www.regular-expressions.info/lookaround.html
       scope: comment.line.fortran-namelist
 
     # Closing /
