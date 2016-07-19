@@ -65,23 +65,24 @@ contexts:
         3: storage.type.namelist-name.fortran-namelist
 
     # Variable = something
-    - match: (?xi:({{tags}}) \s* (=) \s* )
+    - match: (?xi:({{tags}}) (\s*) (=) (\s*) )
       captures:
         1: entity.name.tag.fortran-namelist
-        2: keyword.equals.fortran-namelist
+        2: keyword.ampersand.fortran-namelist
+        #3: keyword.equals.fortran-namelist
+        4: keyword.ampersand.fortran-namelist
 
     # Comment group lines not starting with &
     - match: ^(?!&)(.*)({{groups}})(.*) # see http://www.regular-expressions.info/completelines.html
       scope: punctuation.definition.comment.fortran-namelist
       push: comment
 
-    # Comment everything AFTER end of namelist parameters denoted by forward slash /
-    - match: (?<=/)(.*) # see "positive lookbehind" in http://www.regular-expressions.info/lookaround.html
-      scope: comment.line.fortran-namelist
-
-    # Closing /
-    - match: /
-      scope: keyword.slash.fortran-namelist
+    # Comment everything after /
+    - match: (/)(\s*)(.*)
+      captures:
+        1: keyword.slash.fortran-namelist
+        2: keyword.ampersand.fortran-namelist
+        3: comment.line.fortran-namelist
 
     # floating point with an exponent (no literals)
     - match: (?xi:(?<!\w)  [-+]?  (\d+\.\d+|\d+\.|\.\d+|\d+)  ([ed][-+]?\d+)?  )
