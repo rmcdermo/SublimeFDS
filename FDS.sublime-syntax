@@ -74,7 +74,7 @@ contexts:
 
     # Comment group lines not starting with &
     - match: ^(?!&)(.*)({{groups}})(.*) # see http://www.regular-expressions.info/completelines.html
-      scope: punctuation.definition.comment.fortran-namelist
+      scope: comment.line.fortran-namelist
       push: comment
 
     # Comment everything after /
