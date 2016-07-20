@@ -16,6 +16,12 @@ Random text is a comment
 
 &RADI RADIATION=F/ T/F work in fortran namelist
 
+&SPEC ID='METHANE', LUMPED_COMPONENT_ONLY=T /
+&SPEC ID='PROPANE', LUMPED_COMPONENT_ONLY=T /
+&SPEC ID='natural gas'
+      SPEC_ID(1)='METHANE', MASS_FRACTION(1)=0.5
+      SPEC_ID(2)='PROPANE', MASS_FRACTION(2)=0.5 /
+
 &SURF ID='burner', HRRPUA=100., COLOR='RED' /
 
 &VENT PBZ=0., SURF_ID='burner' /
