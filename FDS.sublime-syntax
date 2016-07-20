@@ -64,12 +64,16 @@ contexts:
         3: storage.type.namelist-name.fortran-namelist
 
     # Variable = something
-    - match: (?xi:({{tags}}) (\s*) (=) (\s*) )
+    - match: (?xi:({{tags}}) ( (\s*\(\s*) (\d+) (\s*\)\s*) )? (\s*) (=) (\s*) )
       captures:
         1: entity.name.tag.fortran-namelist
-        2: keyword.ampersand.fortran-namelist
-        #3: keyword.equals.fortran-namelist
-        4: keyword.ampersand.fortran-namelist
+        3: keyword.ampersand.fortran-namelist
+        4: constant.numeric.floating-point.fortran-namelist
+        5: keyword.ampersand.fortran-namelist
+        #6: keyword.ampersand.fortran-namelist
+        #7: keyword.equals.fortran-namelist
+        #8: keyword.ampersand.fortran-namelist
+
 
     # Comment group lines not starting with &
     - match: ^(?!&)(.*)({{groups}})(.*) # see http://www.regular-expressions.info/completelines.html
