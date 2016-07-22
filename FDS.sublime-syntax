@@ -7,7 +7,7 @@ fileTypes: [fds]
 
 variables:
   ident: '[A-Za-z_][A-Za-z_0-9]*'
-  groups: '(HEAD|MESH|TIME|MULT|MISC|DUMP|SPEC|REAC|PART|PROP|MATL|SURF|PRES|RADI|CLIP|RAMP|TABL|OBST|HOLE|VENT|INIT|ZONE|DEVC|CTRL|PROF|ISOF|SLCF|BNDF|HVAC|GEOM|TAIL)'
+  groups: '(HEAD|MESH|TIME|MULT|MISC|DUMP|SPEC|REAC|PART|PROP|MATL|SURF|PRES|RADI|CLIP|RAMP|TABL|OBST|HOLE|VENT|INIT|ZONE|DEVC|CTRL|PROF|ISOF|SLCF|BNDF|HVAC|GEOM|TRNX|TRNY|TRNZ|TAIL)'
   head: '\bCHID|FYI|TITLE\b'
   mesh: '\bCOLOR|CYLINDRICAL|EVACUATION|EVAC_HUMANS|EVAC_Z_OFFSET|FYI|ID|IJK|LEVEL|MPI_PROCESS|MULT_ID|RGB|XB|N_THREADS\b'
   time: '\bDT|EVAC_DT_FLOWFIELD|EVAC_DT_STEADY_STATE|FYI|LIMITING_DT_RATIO|LOCK_TIME_STEP|RESTRICT_TIME_STEP|T_BEGIN|T_END|T_END_GEOM|TIME_SHRINK_FACTOR|WALL_INCREMENT|TWFIN\b'
@@ -39,7 +39,10 @@ variables:
   bnde: '\bCELL_CENTERED|FYI|PART_ID|PROP_ID|QUANTITY|SPEC_ID\b'
   hvac: '\bAIRCOIL_ID|AMBIENT|AREA|CLEAN_LOSS|COOLANT_SPECIFIC_HEAT|COOLANT_MASS_FLOW|COOLANT_TEMPERATURE|CTRL_ID|DAMPER|DEVC_ID|DIAMETER|DUCT_ID|DUCT_INTERP_TYPE|EFFICIENCY|FAN_ID|FILTER_ID|FIXED_Q|ID|LEAK_ENTHALPY|LENGTH|LOADING|LOADING_MULTIPLIER|LOSS|MASS_FLOW|MAX_FLOW|MAX_PRESSURE|N_CELLS|NODE_ID|PERIMETER|RAMP_ID|RAMP_LOSS|REVERSE|ROUGHNESS|SPEC_ID|TAU_AC|TAU_FAN|TAU_VF|TYPE_ID|VENT_ID|VENT2_ID|VOLUME_FLOW|XYZ\b'
   geom: '\bAUTO_TEXTURE|AZIM|AZIM_DOT|COMPONENT_ONLY|CUTCELLS|DAZIM|DELEV|DSCALE|DT_BNDC|DT_GEOC|DXYZ0|DXYZ|ELEV|ELEV_DOT|FACES|GAXIS|GEOM_IDS|GROTATE|GROTATE_DOT|ID|IJK|MATL_ID|N_LAT|N_LEVELS|N_LONG|SCALE|SCALE_DOT|SPHERE_ORIGIN|SPHERE_RADIUS|SPHERE_TYPE|SURF_ID|TEXTURE_MAPPING|TEXTURE_ORIGIN|TEXTURE_SCALE|VERTS|VOLUS|XB|XYZ0|XYZ|XYZ_DOT|ZMIN|ZVALS|BNDC_FILENAME|GEOC_FILENAME\b'
-  tags: '{{head}}|{{mesh}}|{{time}}|{{mult}}|{{misc}}|{{dump}}|{{spec}}|{{reac}}|{{part}}|{{prop}}|{{matl}}|{{surf}}|{{pres}}|{{radi}}|{{radi}}|{{clip}}|{{ramp}}|{{tabl}}|{{obst}}|{{hole}}|{{vent}}|{{init}}|{{zone}}|{{devc}}|{{ctrl}}|{{prof}}|{{isof}}|{{slcf}}|{{bndf}}|{{bnde}}|{{hvac}}|{{geom}}'
+  trnx: '\bCC|FYI|IDERIV|MESH_NUMBER|PC\b'
+  trny: '\bCC|FYI|IDERIV|MESH_NUMBER|PC\b'
+  trnz: '\bCC|FYI|IDERIV|MESH_NUMBER|PC\b'
+  tags: '{{head}}|{{mesh}}|{{time}}|{{mult}}|{{misc}}|{{dump}}|{{spec}}|{{reac}}|{{part}}|{{prop}}|{{matl}}|{{surf}}|{{pres}}|{{radi}}|{{radi}}|{{clip}}|{{ramp}}|{{tabl}}|{{obst}}|{{hole}}|{{vent}}|{{init}}|{{zone}}|{{devc}}|{{ctrl}}|{{prof}}|{{isof}}|{{slcf}}|{{bndf}}|{{bnde}}|{{hvac}}|{{geom}}|{{trnx}}|{{trny}}|{{trnz}}'
 
 contexts:
   main:
@@ -81,8 +84,8 @@ contexts:
       scope: comment.line.fortran-namelist
       push: comment
 
-    # Comment everything after /
-    - match: (/)(\s*)(.*)
+    # Comment everything after / (also comment / if beginning of line)
+    - match: (?<!^)(/)(\s*)(.*)
       captures:
         1: keyword.slash.fortran-namelist
         2: keyword.ampersand.fortran-namelist
