@@ -58,6 +58,8 @@ contexts:
     # Strings
     - match: \'
       push: singlestring
+    - match: (\")
+      push: doublestring
 
     # A namelist section beginning with &
     - match: (?xi:(\&) (\s*) ({{groups}}))
@@ -67,17 +69,18 @@ contexts:
         3: storage.type.namelist-name.fortran-namelist
 
     # Variable = something
-    - match: (?xi:({{tags}}) ( (\s*\(\s*) (\d+) (\s*\)\s*) )? (\s*) (=) (\s*) )
+    - match: (?xi:({{tags}}) ( (\s*\(\s*) (\d+) (:)? (\d+)? (\s*\)\s*) )? (\s*) (=) (\s*) )
       captures:
         1: entity.name.tag.fortran-namelist                 # {{tags}}
         #2: optional group 
         3: keyword.ampersand.fortran-namelist               # (\s*\(\s*)
         4: constant.numeric.floating-point.fortran-namelist # (\d+)
-        5: keyword.ampersand.fortran-namelist               # (\s*\)\s*)
-        #6: keyword.ampersand.fortran-namelist              # (\s*)
-        #7: keyword.equals.fortran-namelist                 # (=)
+        #5: do not highlight colon                          # (:) 
+        6: constant.numeric.floating-point.fortran-namelist # (\d+)
+        7: keyword.ampersand.fortran-namelist               # (\s*\)\s*)
         #8: keyword.ampersand.fortran-namelist              # (\s*)
-
+        #9: keyword.equals.fortran-namelist                 # (=)
+        #10: keyword.ampersand.fortran-namelist             # (\s*)
 
     # Comment group lines not starting with &
     - match: ^(?!&)(.*)({{groups}})(.*) # see http://www.regular-expressions.info/completelines.html
@@ -100,15 +103,16 @@ contexts:
       scope: constant.language.fortran-namelist
 
     # random text as comment
-    - match: ^(\s*)?.*$
+    - match: ({{ident}})
       scope: comment.line.fortran-namelist
+      push: comment
 
 # additional contexts
 
-  # line_comment:
-  #   - meta_scope: comment.line.fortran-namelist
-  #   - match: $
-  #     pop: true
+  line_comment:
+    - meta_scope: comment.line.fortran-namelist
+    - match: $
+      pop: true
 
   comment:
     - meta_scope: comment.line.fortran-namelist
@@ -120,4 +124,10 @@ contexts:
     - match: \\'
       scope: constant.character.escape.apostrophe.fortran-namelist
     - match: (\')
+      pop: true
+  doublestring:
+    - meta_scope: string.quoted.double.fortran-namelist
+    - match: \\"
+      scope: constant.character.escape.quote.fortran-namelist
+    - match: (\")
       pop: true
