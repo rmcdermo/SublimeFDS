@@ -78,9 +78,9 @@ contexts:
         #5: do not highlight colon                          # (:) 
         6: constant.numeric.floating-point.fortran-namelist # (\d+)
         7: keyword.ampersand.fortran-namelist               # (\s*\)\s*)
-        #8: keyword.ampersand.fortran-namelist              # (\s*)
+        8: keyword.ampersand.fortran-namelist               # (\s*)
         #9: keyword.equals.fortran-namelist                 # (=)
-        #10: keyword.ampersand.fortran-namelist             # (\s*)
+        10: keyword.ampersand.fortran-namelist              # (\s*)
 
     # Comment group lines not starting with &
     - match: ^(?!&)(.*)({{groups}})(.*) # see http://www.regular-expressions.info/completelines.html
