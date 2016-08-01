@@ -68,6 +68,12 @@ contexts:
         2: keyword.ampersand.fortran-namelist
         3: storage.type.namelist-name.fortran-namelist
 
+    # Comment a namelist section beginning with & without a keyword
+    - match: (?xi:(\&) (.*))
+      captures:
+        1: comment.line.fortran-namelist
+        2: comment.line.fortran-namelist
+
     # Variable = something
     - match: (?xi:({{tags}}) ( (\s*\(\s*) (\d+) (:)? (\d+)? (\s*\)\s*) )? (\s*) (=) (\s*) )
       captures:
@@ -83,7 +89,7 @@ contexts:
         10: keyword.ampersand.fortran-namelist              # (\s*)
 
     # Comment group lines not starting with &
-    - match: ^(?!&)(.*)({{groups}})(.*) # see http://www.regular-expressions.info/completelines.html
+    - match: ^(?!&)(.*)([{{groups}}{{ident}}])(.*) # see http://www.regular-expressions.info/completelines.html
       scope: comment.line.fortran-namelist
       push: comment
 
@@ -105,6 +111,10 @@ contexts:
     # random text as comment
     - match: ({{ident}})
       scope: comment.line.fortran-namelist
+      push: comment
+
+    # horizontal rule
+    - match: '-'
       push: comment
 
 # additional contexts
