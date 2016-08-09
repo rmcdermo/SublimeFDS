@@ -114,7 +114,7 @@ contexts:
       push: comment
 
     # horizontal rule
-    - match: '-'
+    - match: (-)|(=)
       push: comment
 
 # additional contexts
