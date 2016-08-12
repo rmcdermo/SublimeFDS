@@ -75,18 +75,19 @@ contexts:
         2: comment.line.fortran-namelist
 
     # Variable = something
-    - match: (?xi:({{tags}}) ( (\s*\(\s*) (\d+) (:)? (\d+)? (\s*\)\s*) )? (\s*) (=) (\s*) )
+    - match: (?xi:({{tags}}) ( (\s*\(\s*) (\d+) (,)? (:)? (\d+)? (\s*\)\s*) )? (\s*) (=) (\s*) )
       captures:
         1: entity.name.tag.fortran-namelist                 # {{tags}}
         #2: optional group 
         3: keyword.ampersand.fortran-namelist               # (\s*\(\s*)
         4: constant.numeric.floating-point.fortran-namelist # (\d+)
-        #5: do not highlight colon                          # (:) 
-        6: constant.numeric.floating-point.fortran-namelist # (\d+)
-        7: keyword.ampersand.fortran-namelist               # (\s*\)\s*)
-        8: keyword.ampersand.fortran-namelist               # (\s*)
-        #9: keyword.equals.fortran-namelist                 # (=)
-        10: keyword.ampersand.fortran-namelist              # (\s*)
+        #5: do not highlight comma                          # (,)
+        #6: do not highlight colon                          # (:) 
+        7: constant.numeric.floating-point.fortran-namelist # (\d+)
+        8: keyword.ampersand.fortran-namelist               # (\s*\)\s*)
+        9: keyword.ampersand.fortran-namelist               # (\s*)
+        #10: keyword.equals.fortran-namelist                # (=)
+        11: keyword.ampersand.fortran-namelist              # (\s*)
 
     # Comment group lines not starting with &
     - match: ^(?!&)(.*)([{{groups}}{{ident}}])(.*) # see http://www.regular-expressions.info/completelines.html
