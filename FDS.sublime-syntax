@@ -7,7 +7,7 @@ fileTypes: [fds]
 
 variables:
   ident: '[A-Za-z_][A-Za-z_0-9]*'
-  groups: '(HEAD|MESH|TIME|MULT|MISC|DUMP|SPEC|REAC|PART|PROP|MATL|SURF|PRES|RADI|CLIP|RAMP|TABL|OBST|HOLE|VENT|INIT|ZONE|DEVC|CTRL|PROF|ISOF|SLCF|BNDF|HVAC|GEOM|TRNX|TRNY|TRNZ|TAIL)'
+  groups: '(HEAD|MESH|TIME|MULT|MISC|DUMP|SPEC|REAC|PART|PROP|MATL|SURF|PRES|RADI|CLIP|RAMP|TABL|OBST|HOLE|VENT|INIT|ZONE|DEVC|CTRL|PROF|ISOF|SLCF|BNDF|HVAC|GEOM|TRNX|TRNY|TRNZ|WIND|TAIL)'
   head: '\bCHID|FYI|TITLE\b'
   mesh: '\bCOLOR|CYLINDRICAL|EVACUATION|EVAC_HUMANS|EVAC_Z_OFFSET|FYI|ID|IJK|LEVEL|MPI_PROCESS|MULT_ID|RGB|XB|N_THREADS|PERIODIC_MESH_IDS\b'
   time: '\bDT|EVAC_DT_FLOWFIELD|EVAC_DT_STEADY_STATE|FYI|LIMITING_DT_RATIO|LOCK_TIME_STEP|RESTRICT_TIME_STEP|T_BEGIN|T_END|T_END_GEOM|TIME_SHRINK_FACTOR|WALL_INCREMENT|WALL_INCREMENT_HT3D|TWFIN\b'
@@ -42,7 +42,8 @@ variables:
   trnx: '\bCC|FYI|IDERIV|MESH_NUMBER|PC\b'
   trny: '\bCC|FYI|IDERIV|MESH_NUMBER|PC\b'
   trnz: '\bCC|FYI|IDERIV|MESH_NUMBER|PC\b'
-  tags: '{{head}}|{{mesh}}|{{time}}|{{mult}}|{{misc}}|{{dump}}|{{spec}}|{{reac}}|{{part}}|{{prop}}|{{matl}}|{{surf}}|{{pres}}|{{radi}}|{{radi}}|{{clip}}|{{ramp}}|{{tabl}}|{{obst}}|{{hole}}|{{vent}}|{{init}}|{{zone}}|{{devc}}|{{ctrl}}|{{prof}}|{{isof}}|{{slcf}}|{{bndf}}|{{bnde}}|{{hvac}}|{{geom}}|{{trnx}}|{{trny}}|{{trnz}}'
+  wind: '\bCORIOLIS_VECTOR|DIRECTION|DT_MEAN_FORCING|FORCE_VECTOR|FYI|GROUND_LEVEL|INITIALIZATION_ONLY|L|LAPSE_RATE|MEAN_FORCING|OBUKHOV_LENGTH|POTENTIAL_TEMPERATURE_CORRECTION|RAMP_DIRECTION|RAMP_SPEED|RAMP_FVX_T|RAMP_FVY_T|RAMP_FVZ_T|RAMP_TMP0_Z|RAMP_U0_T|RAMP_V0_T|RAMP_W0_T|RAMP_U0_Z|RAMP_V0_Z|RAMP_W0_Z|REFERENCE_HEIGHT|REFERENCE_TEMPERATURE|SPEED|SPONGE_CELLS|STRATIFICATION|THETA_STAR|TMP_REF|U_STAR|U0|V0|W0|Z_0|Z_REF\b'
+  tags: '{{head}}|{{mesh}}|{{time}}|{{mult}}|{{misc}}|{{dump}}|{{spec}}|{{reac}}|{{part}}|{{prop}}|{{matl}}|{{surf}}|{{pres}}|{{radi}}|{{radi}}|{{clip}}|{{ramp}}|{{tabl}}|{{obst}}|{{hole}}|{{vent}}|{{init}}|{{zone}}|{{devc}}|{{ctrl}}|{{prof}}|{{isof}}|{{slcf}}|{{bndf}}|{{bnde}}|{{hvac}}|{{geom}}|{{trnx}}|{{trny}}|{{trnz}}|{{wind}}'
 
 contexts:
   main:
