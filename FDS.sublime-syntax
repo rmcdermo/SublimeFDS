@@ -100,22 +100,22 @@ contexts:
         #10: keyword.equals.fortran-namelist                # (=)
         11: keyword.ampersand.fortran-namelist              # (\s*)
 
-            # Variable = arrays
+    # Variable = arrays
     - match: (?xi:({{tags}}) ( (\s*\(\s*) (\d+)? (:)? (\d+)? (,)? (\d+)? (:)? (\d+)? (\s*\)\s*) )? (\s*) (=) (\s*) )
       captures:
-        1: entity.name.tag.fortran-namelist                 # {{tags}}
+        1: entity.name.tag.fortran-namelist                  # {{tags}}
         2: optional group
-        3: keyword.ampersand.fortran-namelist               # (\s*\(\s*)
-        4: constant.numeric.floating-point.fortran-namelist # (\d+)
-        5: do not highlight colon                          # (:)
-        6: constant.numeric.floating-point.fortran-namelist # (\d+)
-        7: do not highlight comma                          # (,)
-        8: constant.numeric.floating-point.fortran-namelist # (\d+)
-        9: do not highlight colon                          # (:)
+        3: keyword.ampersand.fortran-namelist                # (\s*\(\s*)
+        4: constant.numeric.floating-point.fortran-namelist  # (\d+)
+        5: do not highlight colon                            # (:)
+        6: constant.numeric.floating-point.fortran-namelist  # (\d+)
+        7: do not highlight comma                            # (,)
+        8: constant.numeric.floating-point.fortran-namelist  # (\d+)
+        9: do not highlight colon                            # (:)
         10: constant.numeric.floating-point.fortran-namelist # (\d+)
         11: keyword.ampersand.fortran-namelist               # (\s*\)\s*)
-        12: keyword.equals.fortran-namelist                # (=)
-        13: keyword.ampersand.fortran-namelist              # (\s*)
+        #12: keyword.equals.fortran-namelist                  # (=)
+        #13: keyword.ampersand.fortran-namelist               # (\s*)
 
 
     # Comment group lines not starting with &
