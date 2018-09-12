@@ -15,4 +15,4 @@ To install:
 
 2. Clone the repo into this directory. 
 
-3. Restart FDS. Go to Tools -> Command Window. Search for "Set Syntax: FDS" to activate the package. 
+3. In Sublime, navigate to View -> Syntax and select FDS.
