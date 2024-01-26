@@ -28,6 +28,10 @@ Random text is a comment
 
 &SLCF PBY=5, QUANTITY='TEMPERATURE', CELL_CENTERED=.TRUE. /
 
+&GEOM ID='tetr', VERTS=0,0,0, 1,0,0, 0,1,0, 0,0,1, FACES=1,2,3,4 /
+
+&HVAC ID='vent', AREA=2 /
+
 &TAIL /
 
 

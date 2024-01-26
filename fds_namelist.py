@@ -2,7 +2,7 @@
 # Randy McDermott
 # Jan 2024
 #
-# This script reads the FDS read.f90 file and parses the namelist groups for SublimeFDS syntax highlighting.
+# This script reads FDS source files and parses the namelist groups for SublimeFDS syntax highlighting.
 
 import re
 import ruamel.yaml
@@ -12,41 +12,44 @@ yaml.explicit_start = True
 
 # Set your fds repo location
 fds_repo = "/Users/rmcdermo/GitHub/firemodels/fds"
-text_file = open(fds_repo+"/Source/read.f90","r")
+text_file_1 = open(fds_repo+"/Source/read.f90","r")
+text_file_2 = open(fds_repo+"/Source/geom.f90","r")
+text_file_3 = open(fds_repo+"/Source/hvac.f90","r")
 pattern = "namelist /"
 delim = "|"
 
 # initialize a dictionary to store the namelist parameters
 nml_dict = dict()
 
-for line in text_file:
-    line_lowercase = line.lower()
-    if re.search(pattern, line_lowercase):
-        split_line = line_lowercase.split("/",2)
-        nml=split_line[1]
+for text_file in [text_file_1, text_file_2, text_file_3]:
+    for line in text_file:
+        line_lowercase = line.lower()
+        if re.search(pattern, line_lowercase):
+            split_line = line_lowercase.split("/",2)
+            nml=split_line[1]
 
-        next_line = split_line[2]
-        clean_line = next_line.strip("\n& ")
-        params=clean_line.split(",")
-
-        while re.search("&", next_line):
-            # read the next line
-            next_line = next(text_file).lower()
+            next_line = split_line[2]
             clean_line = next_line.strip("\n& ")
-            next_line_params = clean_line.split(",")
-            for nlp in next_line_params:
-                params.append(nlp)
+            params=clean_line.split(",")
 
-        # remove empty stings from params list
-        while "" in params:
-            params.remove("")
+            while re.search("&", next_line):
+                # read the next line
+                next_line = next(text_file).lower()
+                clean_line = next_line.strip("\n& ")
+                next_line_params = clean_line.split(",")
+                for nlp in next_line_params:
+                    params.append(nlp)
 
-        # print(nml)
-        # print(params)
+            # remove empty stings from params list
+            while "" in params:
+                params.remove("")
 
-        nml_dict[nml] = str(delim.join(params)).upper()
+            # print(nml)
+            # print(params)
 
-text_file.close()
+            nml_dict[nml] = str(delim.join(params)).upper()
+
+    text_file.close()
 
 # now edit the YAML file
 
